@@ -1,32 +1,42 @@
 import ProductItem from "@/components/product-item/ProductItem";
+import { allProducts } from "@/services/api/AllApi";
 
-export default function Home() {
-  const products = [
-    {
-      id: 1,
-      image: "/images/products/t-shirt-1.jpg",
-      name: "Fabrilife Mens Premium Designer Edition T Shirt",
-      price: 2300,
-      originalPrice: 2500,
-      isDiscounted: true,
-      discountLabel: "200",
-    },
-    {
-      id: 2,
-      image: "/images/products/t-shirt-2.jpg",
-      name: "Fabrilife Mens Premium Designer Edition T Shirt",
-      price: 2500,
-    },
-    {
-      id: 3,
-      image: "/images/products/t-shirt-3.jpg",
-      name: "Fabrilife Mens Premium Designer Edition T Shirt",
-      price: 2200,
-      originalPrice: 2500,
-      isDiscounted: true,
-      discountLabel: "200",
-    },
-  ];
+export default async function Home() {
+  // const products = [
+  //   {
+  //     id: 1,
+  //     image: "/images/products/t-shirt-1.jpg",
+  //     name: "Fabrilife Mens Premium Designer Edition T Shirt",
+  //     price: 2300,
+  //     originalPrice: 2500,
+  //     isDiscounted: true,
+  //     discountLabel: "200",
+  //   },
+  //   {
+  //     id: 2,
+  //     image: "/images/products/t-shirt-2.jpg",
+  //     name: "Fabrilife Mens Premium Designer Edition T Shirt",
+  //     price: 2500,
+  //   },
+  //   {
+  //     id: 3,
+  //     image: "/images/products/t-shirt-3.jpg",
+  //     name: "Fabrilife Mens Premium Designer Edition T Shirt",
+  //     price: 2200,
+  //     originalPrice: 2500,
+  //     isDiscounted: true,
+  //     discountLabel: "200",
+  //   },
+  // ];
+
+  let products;
+
+  try {
+    const response = await allProducts();
+    products = response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
 
   return (
     <div className="container mx-auto px-4 py-12 mt-14">

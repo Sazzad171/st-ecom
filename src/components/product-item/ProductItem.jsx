@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import CommonButton from '../common/buttons/CommonButton';
+import { TiShoppingCart } from "react-icons/ti";
 
 const ProductItem = ({productInfo}) => {
+  const CartIcon = <TiShoppingCart className="h-6 w-6" />
+
   return (
     <div key={productInfo.id} className="relative p-[2px] bg-white hover:shadow-[0px_4px_12px_0px_#00000026] rounded-lg transition-all duration-500 group">
       <div className="absolute top-2 left-2">
@@ -20,10 +23,10 @@ const ProductItem = ({productInfo}) => {
           className='rounded-md hover:cursor-pointer'
         />
         <div className='absolute bottom-12 group-hover:bottom-16 left-4 right-4 invisible group-hover:visible transition-all duration-300'>
-          <CommonButton text={"Add to Cart"} />
+          <CommonButton icon={CartIcon} text={"Add to Cart"} />
         </div>
         <div className='absolute bottom-0 group-hover:bottom-3 left-4 right-4 invisible group-hover:visible transition-all duration-300'>
-          <CommonButton text={"Quick View"} />
+          <CommonButton icon={CartIcon} text={"Quick View"} />
         </div>
       </div>
       <div className='px-2 py-3'>
