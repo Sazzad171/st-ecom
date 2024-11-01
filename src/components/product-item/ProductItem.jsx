@@ -9,6 +9,7 @@ import useToastify from '@/hooks/useToastify';
 import useCartStore from '@/services/store/cart/useCartStore';
 import { useEffect, useState } from 'react';
 import CartButton from '../common/buttons/CartButton';
+import { discountAmount, finalPrice } from '@/utils/Helpers';
 
 const ProductItem = ({productInfo}) => {
   const [alreadyAddedProduct, setAlreadyAddedProduct] = useState(false);
@@ -36,13 +37,14 @@ const ProductItem = ({productInfo}) => {
   // add to cart
   const addToCart = (prodId) => {
     setProductItems(prodId);
+    notify("Product added to cart!", "success");
   }
 
   return (
     <div className="relative p-[2px] bg-white hover:shadow-[0px_4px_12px_0px_#00000026] rounded-lg transition-all duration-500 group">
-      <div className="absolute top-2 left-2">
-        <div className="bg-orange-500 text-white font-semibold px-2 py-1 rounded-tl-md rounded-tr-md">
-          -{productInfo?.discountPercentage}
+      <div className="absolute top-3 left-0 z-[1]">
+        <div className="bg-orange-500 text-white font-semibold text-xs px-3 py-1 rounded-tl-[4px] rounded-tr-xl rounded-br-[4px]">
+          - ৳ {discountAmount(productInfo?.price, productInfo?.discountPercentage)}
         </div>
         <div className="border-b-[16px] border-r-[16px] border-orange-500 border-transparent border-r-transparent w-0 h-0" />
       </div>
@@ -77,7 +79,7 @@ const ProductItem = ({productInfo}) => {
         <h2 className="text-[#5A6573] text-sm">{productInfo?.category}</h2>
         <h3 className="text-base font-semibold mt-1 mb-2 hover:cursor-pointer">{productInfo?.title}</h3>
         <div className="flex items-center space-x-2">
-          <span className="text-[20px] font-medium text-[#1882FF]">৳ {productInfo?.price}</span>
+          <span className="text-[20px] font-medium text-[#1882FF]">৳ {finalPrice(productInfo?.price, productInfo?.discountPercentage)}</span>
           {productInfo?.price && (
             <span className="text-[#77818C] line-through text-sm">৳ {productInfo?.price}</span>
           )}

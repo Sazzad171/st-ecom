@@ -19,7 +19,7 @@ let cartStore = (set) => ({
       return {
         productItems: state.productItems.map((item, index) =>
           index === existingProductIndex
-            ? { ...item, quantity: item.quantity + quantity }
+            ? { ...item, quantity: quantity + 1 }
             : item
         ),
       };
