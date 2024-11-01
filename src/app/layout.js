@@ -2,6 +2,8 @@ import { Murecho } from 'next/font/google'
 import "./globals.css";
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const murecho = Murecho({
   subsets: ['latin'],
@@ -19,7 +21,8 @@ export default function RootLayout({ children }) {
       <body
       >
         <Header />
-        {children}
+          {children}
+          <ToastContainer position="bottom-center" />
         <Footer />
       </body>
     </html>

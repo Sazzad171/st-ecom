@@ -9,7 +9,29 @@ let cartStore = (set) => ({
   ...initialState,
 
   setProductItems: (val) => set((state) => ({
-    productItems: [...state.productItems, val]
+    productItems: [...state.productItems, {id: val, quantity: 1}]
+  })),
+
+  setQuantity: (id, quantity) => set((state) => {
+    const existingProductIndex = state.productItems.findIndex((item) => item.id === id);
+  
+    if (existingProductIndex !== -1) {
+      return {
+        productItems: state.productItems.map((item, index) =>
+          index === existingProductIndex
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        ),
+      };
+    }
+  
+    return {
+      productItems: [...state.productItems, { id, quantity }],
+    };
+  }),
+
+  removeItem: (id) => set((state) => ({
+    productItems: state.productItems.filter((item) => item.id !== id),
   })),
 
   resetCart: () => set(initialState)

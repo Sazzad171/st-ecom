@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: [""],
+    domains: ["cdn.dummyjson.com"],
   },
   env: {
     BASE_URL: process.env.BASE_URL
